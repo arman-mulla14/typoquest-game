@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TypoQuest Level Background Images</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background: #f0f0f0;
+      }
+      .level-preview {
+        margin: 20px 0;
+        padding: 30px;
+        border-radius: 15px;
+        color: white;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .level-preview::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 15px;
+        z-index: -1;
+      }
+      .level-preview:hover {
+        transform: translateY(-5px);
+      }
+      .level-name {
+        font-size: 2.5em;
+        font-weight: bold;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        position: relative;
+        z-index: 1;
+      }
+      .level-theme {
+        font-size: 1.2em;
+        opacity: 0.9;
+        margin-bottom: 20px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        position: relative;
+        z-index: 1;
+      }
+      .level-description {
+        font-size: 1em;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0 auto;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        position: relative;
+        z-index: 1;
+      }
+      .test-container {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 20px 0;
+      }
+      button {
+        background: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 5px;
+      }
+      button:hover {
+        background: #0056b3;
+      }
+      .location-info {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 15px;
+        position: relative;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🎌 TypoQuest Level Background Images - Japanese Samurai Locations</h1>
+
+    <div class="test-container">
+      <h2>🎨 Background Image Showcase</h2>
+      <p>
+        Each level now features a unique Japanese samurai location as the
+        background image, creating an immersive experience that transports
+        players to different historical settings:
+      </p>
+
+      <button onclick="testAllBackgrounds()">Test All Backgrounds</button>
+      <button onclick="openGameTest()">Open Game Test</button>
+    </div>
+
+    <!-- Level 1: Musashi -->
+    <div
+      class="level-preview"
+      style="
+        background-image: linear-gradient(
+            rgba(255, 215, 0, 0.3),
+            rgba(255, 215, 0, 0.3)
+          ),
+          url('https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+      "
+    >
+      <div class="level-name">Level 1: Musashi</div>
+      <div class="level-theme">🗻 Mount Fuji Dawn</div>
+      <div class="level-description">
+        The majestic Mount Fuji at dawn, representing the beginning of the
+        samurai's journey and the first steps toward mastery.
+      </div>
+      <div class="location-info">
+        <strong>Location:</strong> Mount Fuji, Japan<br />
+        <strong>Theme:</strong> Golden dawn breaking over Japan's most sacred
+        mountain
+      </div>
+    </div>
+
+    <!-- Level 2: Tomoe -->
+    <div
+      class="level-preview"
+      style="
+        background-image: linear-gradient(
+            rgba(255, 182, 193, 0.2),
+            rgba(255, 182, 193, 0.2)
+          ),
+          url('https://images.unsplash.com/photo-1522383225653-ed111181a951?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+      "
+    >
+      <div class="level-name">Level 2: Tomoe</div>
+      <div class="level-theme">🌸 Cherry Blossom Garden</div>
+      <div class="level-description">
+        A serene cherry blossom garden in full bloom, symbolizing beauty,
+        transience, and the warrior's appreciation for life's fleeting moments.
+      </div>
+      <div class="location-info">
+        <strong>Location:</strong> Cherry Blossom Gardens, Japan<br />
+        <strong>Theme:</strong> Pink cherry blossoms representing spring and
+        renewal
+      </div>
+    </div>
+
+    <!-- Level 3: Yoshitsune -->
+    <div
+      class="level-preview"
+      style="
+        background-image: linear-gradient(
+            rgba(34, 139, 34, 0.3),
+            rgba(34, 139, 34, 0.3)
+          ),
+          url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+      "
+    >
+      <div class="level-name">Level 3: Yoshitsune</div>
+      <div class="level-theme">🎋 Bamboo Forest</div>
+      <div class="level-description">
+        A mystical bamboo forest where the wind whispers through tall bamboo
+        stalks, representing strength, flexibility, and the warrior's connection
+        to nature.
+      </div>
+      <div class="location-info">
+        <strong>Location:</strong> Arashiyama Bamboo Grove, Kyoto<br />
+        <strong>Theme:</strong> Green bamboo representing growth and wisdom
+      </div>
+    </div>
+
+    <!-- Level 4: Benkei -->
+    <div
+      class="level-preview"
+      style="
+        background-image: linear-gradient(
+            rgba(65, 105, 225, 0.3),
+            rgba(65, 105, 225, 0.3)
+          ),
+          url('https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+      "
+    >
+      <div class="level-name">Level 4: Benkei</div>
+      <div class="level-theme">⛩️ Japanese Temple</div>
+      <div class="level-description">
+        An ancient Japanese temple with traditional architecture, representing
+        spiritual discipline, loyalty, and the warrior's code of honor.
+      </div>
+      <div class="location-info">
+        <strong>Location:</strong> Traditional Japanese Temple<br />
+        <strong>Theme:</strong> Blue temple representing spiritual depth
+      </div>
+    </div>
+
+    <!-- Level 5: Siro -->
+    <div
+      class="level-preview"
+      style="
+        background-image: linear-gradient(
+            rgba(138, 43, 226, 0.3),
+            rgba(138, 43, 226, 0.3)
+          ),
+          url('https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+      "
+    >
+      <div class="level-name">Level 5: Siro</div>
+      <div class="level-theme">🏮 Kyoto Streets</div>
+      <div class="level-description">
+        Traditional streets of Kyoto with lanterns and traditional architecture,
+        representing the heart of Japanese culture and the samurai's urban
+        environment.
+      </div>
+      <div class="location-info">
+        <strong>Location:</strong> Historic Kyoto Streets<br />
+        <strong>Theme:</strong> Purple twilight representing spiritual awakening
+      </div>
+    </div>
+
+    <!-- Level 6: Kenshin -->
+    <div
+      class="level-preview"
+      style="
+        background-image: linear-gradient(
+            rgba(139, 0, 0, 0.4),
+            rgba(139, 0, 0, 0.4)
+          ),
+          url('https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+      "
+    >
+      <div class="level-name">Level 6: Kenshin</div>
+      <div class="level-theme">⚔️ Battlefield</div>
+      <div class="level-description">
+        A dramatic battlefield scene with flags and weapons, representing
+        courage, determination, and the warrior's spirit in combat.
+      </div>
+      <div class="location-info">
+        <strong>Location:</strong> Historic Battlefield<br />
+        <strong>Theme:</strong> Crimson red representing battle and courage
+      </div>
+    </div>
+
+    <!-- Level 7: Shingen -->
+    <div
+      class="level-preview"
+      style="
+        background-image: linear-gradient(
+            rgba(105, 105, 105, 0.3),
+            rgba(105, 105, 105, 0.3)
+          ),
+          url('https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+      "
+    >
+      <div class="level-name">Level 7: Shingen</div>
+      <div class="level-theme">🏰 Moonlit Castle</div>
+      <div class="level-description">
+        A majestic castle illuminated by moonlight, representing strategy,
+        wisdom, and the calculated precision of the master tactician.
+      </div>
+      <div class="location-info">
+        <strong>Location:</strong> Japanese Castle at Night<br />
+        <strong>Theme:</strong> Silver moonlight representing strategy
+      </div>
+    </div>
+
+    <!-- Level 8: Masamune -->
+    <div
+      class="level-preview"
+      style="
+        background-image: linear-gradient(
+            rgba(70, 130, 180, 0.3),
+            rgba(70, 130, 180, 0.3)
+          ),
+          url('https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+      "
+    >
+      <div class="level-name">Level 8: Masamune</div>
+      <div class="level-theme">⚒️ Forge Workshop</div>
+      <div class="level-description">
+        A traditional sword forge with glowing embers and steel, representing
+        craftsmanship, perfection, and the art of creating legendary weapons.
+      </div>
+      <div class="location-info">
+        <strong>Location:</strong> Traditional Sword Forge<br />
+        <strong>Theme:</strong> Steel blue representing craftsmanship
+      </div>
+    </div>
+
+    <!-- Level 9: Hanzo -->
+    <div
+      class="level-preview"
+      style="
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+          ),
+          url('https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+      "
+    >
+      <div class="level-name">Level 9: Hanzo</div>
+      <div class="level-theme">🕶️ Ninja Village</div>
+      <div class="level-description">
+        A hidden ninja village shrouded in shadows and mystery, representing
+        stealth, secrecy, and the ninja's art of invisibility.
+      </div>
+      <div class="location-info">
+        <strong>Location:</strong> Hidden Ninja Village<br />
+        <strong>Theme:</strong> Shadow black representing stealth
+      </div>
+    </div>
+
+    <!-- Level 10: Ethic -->
+    <div
+      class="level-preview"
+      style="
+        background-image: linear-gradient(
+            rgba(255, 215, 0, 0.3),
+            rgba(255, 215, 0, 0.3)
+          ),
+          url('https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+      "
+    >
+      <div class="level-name">Level 10: Ethic</div>
+      <div class="level-theme">🏆 Golden Temple</div>
+      <div class="level-description">
+        A magnificent golden temple representing wisdom, honor, and the
+        samurai's code of ethics and moral principles.
+      </div>
+      <div class="location-info">
+        <strong>Location:</strong> Golden Temple, Japan<br />
+        <strong>Theme:</strong> Golden wisdom representing honor
+      </div>
+    </div>
+
+    <!-- Level 11: Takeda -->
+    <div
+      class="level-preview"
+      style="
+        background-image: linear-gradient(
+            rgba(255, 69, 0, 0.3),
+            rgba(255, 69, 0, 0.3)
+          ),
+          url('https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+      "
+    >
+      <div class="level-name">Level 11: Takeda</div>
+      <div class="level-theme">🍁 Autumn Mountains</div>
+      <div class="level-description">
+        Majestic mountains covered in autumn colors, representing change,
+        maturity, and the cycle of life and seasons.
+      </div>
+      <div class="location-info">
+        <strong>Location:</strong> Autumn Mountains, Japan<br />
+        <strong>Theme:</strong> Orange autumn representing change
+      </div>
+    </div>
+
+    <!-- Level 12: Ieyasu -->
+    <div
+      class="level-preview"
+      style="
+        background-image: linear-gradient(
+            rgba(255, 215, 0, 0.3),
+            rgba(255, 215, 0, 0.3)
+          ),
+          url('https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+      "
+    >
+      <div class="level-name">Level 12: Ieyasu</div>
+      <div class="level-theme">👑 Imperial Palace</div>
+      <div class="level-description">
+        The grand imperial palace with its majestic architecture, representing
+        leadership, authority, and the legacy of great rulers.
+      </div>
+      <div class="location-info">
+        <strong>Location:</strong> Imperial Palace, Tokyo<br />
+        <strong>Theme:</strong> Imperial gold representing leadership
+      </div>
+    </div>
+
+    <!-- Level 13: Nobunaga -->
+    <div
+      class="level-preview"
+      style="
+        background-image: linear-gradient(
+            rgba(255, 69, 0, 0.4),
+            rgba(255, 69, 0, 0.4)
+          ),
+          url('https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+      "
+    >
+      <div class="level-name">Level 13: Nobunaga</div>
+      <div class="level-theme">🔥 Fire Festival</div>
+      <div class="level-description">
+        A dramatic fire festival with flames and celebration, representing
+        ambition, power, and the unifier's spirit of transformation.
+      </div>
+      <div class="location-info">
+        <strong>Location:</strong> Fire Festival, Japan<br />
+        <strong>Theme:</strong> Fire red representing ambition
+      </div>
+    </div>
+
+    <!-- Level 14: Hideyoshi -->
+    <div
+      class="level-preview"
+      style="
+        background-image: linear-gradient(
+            rgba(255, 255, 255, 0.3),
+            rgba(255, 255, 255, 0.3)
+          ),
+          url('https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+      "
+    >
+      <div class="level-name">Level 14: Hideyoshi</div>
+      <div class="level-theme">❄️ Snow Temple</div>
+      <div class="level-description">
+        A pristine temple covered in snow, representing perfection, clarity, and
+        the highest achievement of the warrior's path.
+      </div>
+      <div class="location-info">
+        <strong>Location:</strong> Snow-Covered Temple<br />
+        <strong>Theme:</strong> Diamond white representing perfection
+      </div>
+    </div>
+
+    <!-- Level 15: Hicari -->
+    <div
+      class="level-preview"
+      style="
+        background-image: linear-gradient(
+            rgba(255, 107, 107, 0.2),
+            rgba(255, 107, 107, 0.2)
+          ),
+          url('https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+      "
+    >
+      <div class="level-name">Level 15: Hicari</div>
+      <div class="level-theme">🌸 Master's Garden</div>
+      <div class="level-description">
+        A perfect zen garden with all elements in harmony, representing the
+        ultimate mastery and enlightenment of the master typist.
+      </div>
+      <div class="location-info">
+        <strong>Location:</strong> Master's Zen Garden<br />
+        <strong>Theme:</strong> Rainbow colors representing mastery
+      </div>
+    </div>
+
+    <script>
+      function testAllBackgrounds() {
+        alert(
+          "All 15 levels now feature unique Japanese samurai location backgrounds! Each level transports players to different historical settings, creating an immersive typing experience."
+        );
+      }
+
+      function openGameTest() {
+        window.open("index.html", "_blank");
+      }
+
+      // Add some interactive effects
+      document.querySelectorAll(".level-preview").forEach((preview) => {
+        preview.addEventListener("click", function () {
+          this.style.transform = "scale(1.05)";
+          setTimeout(() => {
+            this.style.transform = "translateY(-5px)";
+          }, 200);
+        });
+      });
+    </script>
+  </body>
+</html>

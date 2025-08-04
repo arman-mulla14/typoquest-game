@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TypoQuest Restart Level Test</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background: #f0f0f0;
+      }
+      .test-container {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 20px 0;
+      }
+      .test-result {
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 4px;
+      }
+      .pass {
+        background: #d4edda;
+        color: #155724;
+      }
+      .fail {
+        background: #f8d7da;
+        color: #721c24;
+      }
+      button {
+        background: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 5px;
+      }
+      button:hover {
+        background: #0056b3;
+      }
+      iframe {
+        width: 100%;
+        height: 600px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>TypoQuest Restart Level Test</h1>
+
+    <div class="test-container">
+      <h2>🧪 Test Instructions</h2>
+      <ol>
+        <li>Open the game in the iframe below</li>
+        <li>Start a level and intentionally type incorrectly</li>
+        <li>
+          Wait for the level to end (timer runs out or you complete with low
+          accuracy)
+        </li>
+        <li>Verify that the level automatically restarts after 1.5 seconds</li>
+        <li>Check that the "Retry Level" button appears when you fail</li>
+        <li>Test that clicking "Retry Level" restarts the current level</li>
+      </ol>
+
+      <div id="test-results">
+        <h3>Test Results:</h3>
+        <div id="results-list"></div>
+      </div>
+    </div>
+
+    <div class="test-container">
+      <h2>🎮 Live Game Test</h2>
+      <iframe id="game-frame" src="index.html"></iframe>
+    </div>
+
+    <script>
+      function addTestResult(testName, status, message) {
+        const resultDiv = document.createElement("div");
+        resultDiv.className = `test-result ${status}`;
+        resultDiv.innerHTML = `
+                <strong>${testName}</strong><br>
+                Status: ${status.toUpperCase()}<br>
+                Message: ${message}
+            `;
+        document.getElementById("results-list").appendChild(resultDiv);
+      }
+
+      // Test the restart functionality
+      function testRestartFunctionality() {
+        // Check if the restart function exists
+        if (typeof window.restartCurrentLevel === "function") {
+          addTestResult(
+            "Restart Function",
+            "pass",
+            "restartCurrentLevel function is available"
+          );
+        } else {
+          addTestResult(
+            "Restart Function",
+            "fail",
+            "restartCurrentLevel function is missing"
+          );
+        }
+
+        // Check if the restart button exists in the iframe
+        const iframe = document.getElementById("game-frame");
+        iframe.onload = function () {
+          try {
+            const iframeDoc =
+              iframe.contentDocument || iframe.contentWindow.document;
+            const restartBtn = iframeDoc.getElementById("restartBtn");
+            if (restartBtn) {
+              addTestResult(
+                "Restart Button",
+                "pass",
+                "Retry Level button is present in the game"
+              );
+            } else {
+              addTestResult(
+                "Restart Button",
+                "fail",
+                "Retry Level button is missing from the game"
+              );
+            }
+          } catch (error) {
+            addTestResult(
+              "Restart Button",
+              "fail",
+              `Error checking restart button: ${error.message}`
+            );
+          }
+        };
+      }
+
+      // Run tests when page loads
+      window.addEventListener("load", function () {
+        setTimeout(testRestartFunctionality, 2000);
+      });
+    </script>
+  </body>
+</html>

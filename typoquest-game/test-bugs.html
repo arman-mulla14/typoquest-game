@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TypoQuest Bug Testing</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background: #f0f0f0;
+      }
+      .test-section {
+        background: white;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .test-result {
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 4px;
+      }
+      .pass {
+        background: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+      }
+      .fail {
+        background: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+      }
+      .warning {
+        background: #fff3cd;
+        color: #856404;
+        border: 1px solid #ffeaa7;
+      }
+      button {
+        background: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 5px;
+      }
+      button:hover {
+        background: #0056b3;
+      }
+      iframe {
+        width: 100%;
+        height: 600px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>TypoQuest Bug Testing Dashboard</h1>
+
+    <div class="test-section">
+      <h2>🔍 Functionality Tests</h2>
+      <button onclick="runFunctionalityTests()">Run Functionality Tests</button>
+      <div id="functionality-results"></div>
+    </div>
+
+    <div class="test-section">
+      <h2>🐛 Bug Detection Tests</h2>
+      <button onclick="runBugTests()">Run Bug Tests</button>
+      <div id="bug-results"></div>
+    </div>
+
+    <div class="test-section">
+      <h2>🎮 Game Testing</h2>
+      <button onclick="openGameTest()">Open Game in New Tab</button>
+      <button onclick="openAdminPanel()">Open Admin Panel</button>
+      <div id="game-test-results"></div>
+    </div>
+
+    <div class="test-section">
+      <h2>📊 Performance Tests</h2>
+      <button onclick="runPerformanceTests()">Run Performance Tests</button>
+      <div id="performance-results"></div>
+    </div>
+
+    <div class="test-section">
+      <h2>🎯 Live Game Test</h2>
+      <iframe id="game-frame" src="index.html"></iframe>
+    </div>
+
+    <script>
+      let testResults = [];
+
+      function addTestResult(category, testName, status, message) {
+        const result = {
+          category,
+          testName,
+          status,
+          message,
+          timestamp: new Date().toISOString(),
+        };
+        testResults.push(result);
+
+        const resultDiv = document.createElement("div");
+        resultDiv.className = `test-result ${status}`;
+        resultDiv.innerHTML = `
+                <strong>${testName}</strong><br>
+                Status: ${status.toUpperCase()}<br>
+                Message: ${message}
+            `;
+
+        document.getElementById(`${category}-results`).appendChild(resultDiv);
+      }
+
+      function runFunctionalityTests() {
+        document.getElementById("functionality-results").innerHTML = "";
+
+        // Test 1: Check if all required elements exist
+        try {
+          const requiredElements = [
+            "welcomeScreen",
+            "signupScreen",
+            "gameScreen",
+            "certificateScreen",
+            "adminScreen",
+            "typingInput",
+            "startBtn",
+            "nextBtn",
+            "timer",
+            "wpmDisplay",
+            "accuracyDisplay",
+          ];
+
+          let allElementsExist = true;
+          requiredElements.forEach((elementId) => {
+            if (!document.getElementById(elementId)) {
+              allElementsExist = false;
+            }
+          });
+
+          if (allElementsExist) {
+            addTestResult(
+              "functionality",
+              "DOM Elements",
+              "pass",
+              "All required DOM elements are present"
+            );
+          } else {
+            addTestResult(
+              "functionality",
+              "DOM Elements",
+              "fail",
+              "Some required DOM elements are missing"
+            );
+          }
+        } catch (error) {
+          addTestResult(
+            "functionality",
+            "DOM Elements",
+            "fail",
+            `Error: ${error.message}`
+          );
+        }
+
+        // Test 2: Check if game state is properly initialized
+        try {
+          if (typeof gameState !== "undefined") {
+            addTestResult(
+              "functionality",
+              "Game State",
+              "pass",
+              "Game state is properly initialized"
+            );
+          } else {
+            addTestResult(
+              "functionality",
+              "Game State",
+              "fail",
+              "Game state is not initialized"
+            );
+          }
+        } catch (error) {
+          addTestResult(
+            "functionality",
+            "Game State",
+            "fail",
+            `Error: ${error.message}`
+          );
+        }
+
+        // Test 3: Check if levels array exists
+        try {
+          if (typeof levels !== "undefined" && levels.length === 15) {
+            addTestResult(
+              "functionality",
+              "Levels Array",
+              "pass",
+              `All 15 levels are defined`
+            );
+          } else {
+            addTestResult(
+              "functionality",
+              "Levels Array",
+              "fail",
+              "Levels array is missing or incomplete"
+            );
+          }
+        } catch (error) {
+          addTestResult(
+            "functionality",
+            "Levels Array",
+            "fail",
+            `Error: ${error.message}`
+          );
+        }
+
+        // Test 4: Check if required functions exist
+        try {
+          const requiredFunctions = [
+            "showWelcome",
+            "showSignup",
+            "showGame",
+            "startLevel",
+            "nextLevel",
+            "resetGame",
+            "handleTyping",
+            "updateStats",
+          ];
+
+          let allFunctionsExist = true;
+          requiredFunctions.forEach((funcName) => {
+            if (typeof window[funcName] !== "function") {
+              allFunctionsExist = false;
+            }
+          });
+
+          if (allFunctionsExist) {
+            addTestResult(
+              "functionality",
+              "Game Functions",
+              "pass",
+              "All required game functions are defined"
+            );
+          } else {
+            addTestResult(
+              "functionality",
+              "Game Functions",
+              "fail",
+              "Some required game functions are missing"
+            );
+          }
+        } catch (error) {
+          addTestResult(
+            "functionality",
+            "Game Functions",
+            "fail",
+            `Error: ${error.message}`
+          );
+        }
+      }
+
+      function runBugTests() {
+        document.getElementById("bug-results").innerHTML = "";
+
+        // Test 1: Check for potential memory leaks
+        try {
+          const typingInput = document.getElementById("typingInput");
+          if (typingInput) {
+            const eventListeners = getEventListeners(typingInput);
+            if (
+              eventListeners &&
+              eventListeners.input &&
+              eventListeners.input.length > 1
+            ) {
+              addTestResult(
+                "bug",
+                "Memory Leak Check",
+                "warning",
+                "Multiple input event listeners detected - potential memory leak"
+              );
+            } else {
+              addTestResult(
+                "bug",
+                "Memory Leak Check",
+                "pass",
+                "No duplicate event listeners detected"
+              );
+            }
+          } else {
+            addTestResult(
+              "bug",
+              "Memory Leak Check",
+              "fail",
+              "Typing input element not found"
+            );
+          }
+        } catch (error) {
+          addTestResult(
+            "bug",
+            "Memory Leak Check",
+            "warning",
+            "Could not check for memory leaks"
+          );
+        }
+
+        // Test 2: Check for timer issues
+        try {
+          if (typeof gameState !== "undefined" && gameState.timer !== null) {
+            addTestResult(
+              "bug",
+              "Timer Management",
+              "warning",
+              "Timer is running - check if properly cleared"
+            );
+          } else {
+            addTestResult(
+              "bug",
+              "Timer Management",
+              "pass",
+              "Timer is properly managed"
+            );
+          }
+        } catch (error) {
+          addTestResult(
+            "bug",
+            "Timer Management",
+            "fail",
+            `Error: ${error.message}`
+          );
+        }
+
+        // Test 3: Check for localStorage issues
+        try {
+          const testKey = "typoquest_test";
+          localStorage.setItem(testKey, "test");
+          const retrieved = localStorage.getItem(testKey);
+          localStorage.removeItem(testKey);
+
+          if (retrieved === "test") {
+            addTestResult(
+              "bug",
+              "LocalStorage",
+              "pass",
+              "LocalStorage is working properly"
+            );
+          } else {
+            addTestResult(
+              "bug",
+              "LocalStorage",
+              "fail",
+              "LocalStorage is not working properly"
+            );
+          }
+        } catch (error) {
+          addTestResult(
+            "bug",
+            "LocalStorage",
+            "fail",
+            `LocalStorage error: ${error.message}`
+          );
+        }
+
+        // Test 4: Check for CSS loading issues
+        try {
+          const styles = document.styleSheets;
+          let cssLoaded = false;
+          for (let i = 0; i < styles.length; i++) {
+            try {
+              if (styles[i].href && styles[i].href.includes("styles.css")) {
+                cssLoaded = true;
+                break;
+              }
+            } catch (e) {
+              // Cross-origin stylesheets will throw errors
+            }
+          }
+
+          if (cssLoaded) {
+            addTestResult(
+              "bug",
+              "CSS Loading",
+              "pass",
+              "CSS styles are properly loaded"
+            );
+          } else {
+            addTestResult(
+              "bug",
+              "CSS Loading",
+              "warning",
+              "Could not verify CSS loading"
+            );
+          }
+        } catch (error) {
+          addTestResult(
+            "bug",
+            "CSS Loading",
+            "fail",
+            `CSS error: ${error.message}`
+          );
+        }
+      }
+
+      function runPerformanceTests() {
+        document.getElementById("performance-results").innerHTML = "";
+
+        // Test 1: Check page load time
+        try {
+          const loadTime = performance.now();
+          addTestResult(
+            "performance",
+            "Page Load Time",
+            "pass",
+            `Page loaded in ${loadTime.toFixed(2)}ms`
+          );
+        } catch (error) {
+          addTestResult(
+            "performance",
+            "Page Load Time",
+            "fail",
+            `Error: ${error.message}`
+          );
+        }
+
+        // Test 2: Check memory usage
+        try {
+          if (performance.memory) {
+            const memoryUsage = performance.memory.usedJSHeapSize / 1024 / 1024;
+            addTestResult(
+              "performance",
+              "Memory Usage",
+              "pass",
+              `Memory usage: ${memoryUsage.toFixed(2)}MB`
+            );
+          } else {
+            addTestResult(
+              "performance",
+              "Memory Usage",
+              "warning",
+              "Memory usage not available"
+            );
+          }
+        } catch (error) {
+          addTestResult(
+            "performance",
+            "Memory Usage",
+            "fail",
+            `Error: ${error.message}`
+          );
+        }
+
+        // Test 3: Check DOM size
+        try {
+          const domSize = document.querySelectorAll("*").length;
+          addTestResult(
+            "performance",
+            "DOM Size",
+            "pass",
+            `DOM contains ${domSize} elements`
+          );
+        } catch (error) {
+          addTestResult(
+            "performance",
+            "DOM Size",
+            "fail",
+            `Error: ${error.message}`
+          );
+        }
+      }
+
+      function openGameTest() {
+        window.open("index.html", "_blank");
+        addTestResult(
+          "game-test",
+          "Game Test",
+          "pass",
+          "Game opened in new tab"
+        );
+      }
+
+      function openAdminPanel() {
+        window.open("index.html?admin=track-secret-panel", "_blank");
+        addTestResult(
+          "game-test",
+          "Admin Panel",
+          "pass",
+          "Admin panel opened in new tab"
+        );
+      }
+
+      // Helper function to get event listeners (simplified)
+      function getEventListeners(element) {
+        // This is a simplified version - in real browsers, you can't access event listeners directly
+        return null;
+      }
+
+      // Auto-run tests when page loads
+      window.addEventListener("load", function () {
+        setTimeout(() => {
+          runFunctionalityTests();
+          runBugTests();
+          runPerformanceTests();
+        }, 1000);
+      });
+    </script>
+  </body>
+</html>

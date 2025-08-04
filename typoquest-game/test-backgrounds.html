@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TypoQuest Level Backgrounds</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background: #f0f0f0;
+      }
+      .level-preview {
+        margin: 20px 0;
+        padding: 30px;
+        border-radius: 15px;
+        color: white;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+      }
+      .level-preview:hover {
+        transform: translateY(-5px);
+      }
+      .level-name {
+        font-size: 2.5em;
+        font-weight: bold;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+      .level-theme {
+        font-size: 1.2em;
+        opacity: 0.9;
+        margin-bottom: 20px;
+      }
+      .level-description {
+        font-size: 1em;
+        opacity: 0.8;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .test-container {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 20px 0;
+      }
+      button {
+        background: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 5px;
+      }
+      button:hover {
+        background: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🎌 TypoQuest Level Backgrounds - Japanese Samurai Theme</h1>
+
+    <div class="test-container">
+      <h2>🎨 Background Color Showcase</h2>
+      <p>
+        Each level has a unique Japanese-inspired background color that reflects
+        the samurai theme:
+      </p>
+
+      <button onclick="testAllBackgrounds()">Test All Backgrounds</button>
+      <button onclick="openGameTest()">Open Game Test</button>
+    </div>
+
+    <!-- Level 1: Musashi -->
+    <div
+      class="level-preview"
+      style="
+        background: linear-gradient(
+          135deg,
+          #ffd700 0%,
+          #ffa500 50%,
+          #ff8c00 100%
+        );
+      "
+    >
+      <div class="level-name">Level 1: Musashi</div>
+      <div class="level-theme">🌅 Golden Dawn</div>
+      <div class="level-description">
+        The radiant golden light of dawn breaking over the mountains,
+        representing the beginning of the samurai's journey.
+      </div>
+    </div>
+
+    <!-- Level 2: Tomoe -->
+    <div
+      class="level-preview"
+      style="
+        background: linear-gradient(
+          135deg,
+          #ffd700 0%,
+          #ffa500 50%,
+          #ff8c00 100%
+        );
+      "
+    >
+      <div class="level-name">Level 2: Tomoe</div>
+      <div class="level-theme">🌅 Golden Sunrise</div>
+      <div class="level-description">
+        The radiant golden light of dawn breaking over the mountains,
+        symbolizing hope and new beginnings.
+      </div>
+    </div>
+
+    <!-- Level 3: Yoshitsune -->
+    <div
+      class="level-preview"
+      style="
+        background: linear-gradient(
+          135deg,
+          #90ee90 0%,
+          #32cd32 50%,
+          #228b22 100%
+        );
+      "
+    >
+      <div class="level-name">Level 3: Yoshitsune</div>
+      <div class="level-theme">🌲 Emerald Forest</div>
+      <div class="level-description">
+        The deep green of ancient forests, representing growth, wisdom, and the
+        warrior's connection to nature.
+      </div>
+    </div>
+
+    <!-- Level 4: Benkei -->
+    <div
+      class="level-preview"
+      style="
+        background: linear-gradient(
+          135deg,
+          #4169e1 0%,
+          #1e90ff 50%,
+          #0000cd 100%
+        );
+      "
+    >
+      <div class="level-name">Level 4: Benkei</div>
+      <div class="level-theme">🌊 Deep Ocean</div>
+      <div class="level-description">
+        The mysterious depths of the ocean, representing strength, depth, and
+        unwavering loyalty.
+      </div>
+    </div>
+
+    <!-- Level 5: Siro -->
+    <div
+      class="level-preview"
+      style="
+        background: linear-gradient(
+          135deg,
+          #dda0dd 0%,
+          #9370db 50%,
+          #8a2be2 100%
+        );
+      "
+    >
+      <div class="level-name">Level 5: Siro</div>
+      <div class="level-theme">🔮 Mystic Purple</div>
+      <div class="level-description">
+        The mystical purple of twilight, representing spiritual awakening and
+        inner strength.
+      </div>
+    </div>
+
+    <!-- Level 6: Kenshin -->
+    <div
+      class="level-preview"
+      style="
+        background: linear-gradient(
+          135deg,
+          #dc143c 0%,
+          #b22222 50%,
+          #8b0000 100%
+        );
+      "
+    >
+      <div class="level-name">Level 6: Kenshin</div>
+      <div class="level-theme">⚔️ Crimson Battle</div>
+      <div class="level-description">
+        The fierce red of battle, representing courage, determination, and the
+        warrior's spirit.
+      </div>
+    </div>
+
+    <!-- Level 7: Shingen -->
+    <div
+      class="level-preview"
+      style="
+        background: linear-gradient(
+          135deg,
+          #c0c0c0 0%,
+          #a9a9a9 50%,
+          #696969 100%
+        );
+      "
+    >
+      <div class="level-name">Level 7: Shingen</div>
+      <div class="level-theme">🌙 Silver Moon</div>
+      <div class="level-description">
+        The cool silver of moonlight, representing strategy, wisdom, and
+        calculated precision.
+      </div>
+    </div>
+
+    <!-- Level 8: Masamune -->
+    <div
+      class="level-preview"
+      style="
+        background: linear-gradient(
+          135deg,
+          #4682b4 0%,
+          #2f4f4f 50%,
+          #1c1c1c 100%
+        );
+      "
+    >
+      <div class="level-name">Level 8: Masamune</div>
+      <div class="level-theme">⚔️ Steel Blue</div>
+      <div class="level-description">
+        The cold steel of the master swordsmith's blade, representing
+        craftsmanship and perfection.
+      </div>
+    </div>
+
+    <!-- Level 9: Hanzo -->
+    <div
+      class="level-preview"
+      style="
+        background: linear-gradient(
+          135deg,
+          #2f2f2f 0%,
+          #1a1a1a 50%,
+          #000000 100%
+        );
+      "
+    >
+      <div class="level-name">Level 9: Hanzo</div>
+      <div class="level-theme">🕶️ Shadow Black</div>
+      <div class="level-description">
+        The deep shadows of night, representing stealth, mystery, and the
+        ninja's art.
+      </div>
+    </div>
+
+    <!-- Level 10: Ethic -->
+    <div
+      class="level-preview"
+      style="
+        background: linear-gradient(
+          135deg,
+          #ffd700 0%,
+          #ffa500 50%,
+          #ff8c00 100%
+        );
+      "
+    >
+      <div class="level-name">Level 10: Ethic</div>
+      <div class="level-theme">🏆 Golden Wisdom</div>
+      <div class="level-description">
+        The radiant gold of wisdom and honor, representing the samurai's code of
+        ethics.
+      </div>
+    </div>
+
+    <!-- Level 11: Takeda -->
+    <div
+      class="level-preview"
+      style="
+        background: linear-gradient(
+          135deg,
+          #ffa500 0%,
+          #ff8c00 50%,
+          #ff4500 100%
+        );
+      "
+    >
+      <div class="level-name">Level 11: Takeda</div>
+      <div class="level-theme">🍁 Autumn Leaves</div>
+      <div class="level-description">
+        The warm orange of autumn leaves, representing change, maturity, and the
+        cycle of life.
+      </div>
+    </div>
+
+    <!-- Level 12: Ieyasu -->
+    <div
+      class="level-preview"
+      style="
+        background: linear-gradient(
+          135deg,
+          #ffd700 0%,
+          #daa520 50%,
+          #b8860b 100%
+        );
+      "
+    >
+      <div class="level-name">Level 12: Ieyasu</div>
+      <div class="level-theme">👑 Imperial Gold</div>
+      <div class="level-description">
+        The majestic gold of imperial power, representing leadership, authority,
+        and legacy.
+      </div>
+    </div>
+
+    <!-- Level 13: Nobunaga -->
+    <div
+      class="level-preview"
+      style="
+        background: linear-gradient(
+          135deg,
+          #ff4500 0%,
+          #dc143c 50%,
+          #b22222 100%
+        );
+      "
+    >
+      <div class="level-name">Level 13: Nobunaga</div>
+      <div class="level-theme">🔥 Fire Red</div>
+      <div class="level-description">
+        The fierce red of fire, representing ambition, power, and the unifier's
+        spirit.
+      </div>
+    </div>
+
+    <!-- Level 14: Hideyoshi -->
+    <div
+      class="level-preview"
+      style="
+        background: linear-gradient(
+          135deg,
+          #ffffff 0%,
+          #f0f8ff 50%,
+          #e6e6fa 100%
+        );
+      "
+    >
+      <div class="level-name">Level 14: Hideyoshi</div>
+      <div class="level-theme">💎 Diamond White</div>
+      <div class="level-description">
+        The pure white of diamonds, representing perfection, clarity, and the
+        highest achievement.
+      </div>
+    </div>
+
+    <!-- Level 15: Hicari -->
+    <div
+      class="level-preview"
+      style="
+        background: linear-gradient(
+          135deg,
+          #ff6b6b 0%,
+          #4ecdc4 25%,
+          #45b7d1 50%,
+          #96ceb4 75%,
+          #ffeaa7 100%
+        );
+      "
+    >
+      <div class="level-name">Level 15: Hicari</div>
+      <div class="level-theme">🌈 Master Rainbow</div>
+      <div class="level-description">
+        The magnificent rainbow of all colors, representing the ultimate mastery
+        and enlightenment.
+      </div>
+    </div>
+
+    <script>
+      function testAllBackgrounds() {
+        alert(
+          "All 15 levels have unique Japanese-inspired background colors! Each level represents a different aspect of samurai culture and philosophy."
+        );
+      }
+
+      function openGameTest() {
+        window.open("index.html", "_blank");
+      }
+
+      // Add some interactive effects
+      document.querySelectorAll(".level-preview").forEach((preview) => {
+        preview.addEventListener("click", function () {
+          this.style.transform = "scale(1.05)";
+          setTimeout(() => {
+            this.style.transform = "translateY(-5px)";
+          }, 200);
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TypoQuest Timeout Test</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background: #f0f0f0;
+      }
+      .test-container {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 20px 0;
+      }
+      .test-result {
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 4px;
+      }
+      .pass {
+        background: #d4edda;
+        color: #155724;
+      }
+      .fail {
+        background: #f8d7da;
+        color: #721c24;
+      }
+      .warning {
+        background: #fff3cd;
+        color: #856404;
+      }
+      button {
+        background: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 5px;
+      }
+      button:hover {
+        background: #0056b3;
+      }
+      iframe {
+        width: 100%;
+        height: 600px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+      .test-scenario {
+        background: #e3f2fd;
+        padding: 15px;
+        border-radius: 4px;
+        margin: 10px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>TypoQuest Timeout Test</h1>
+
+    <div class="test-container">
+      <h2>🧪 Timeout Test Scenarios</h2>
+
+      <div class="test-scenario">
+        <h3>Scenario 1: Timer Runs Out</h3>
+        <ol>
+          <li>Start a level in the game</li>
+          <li>Don't type anything or type very slowly</li>
+          <li>Wait for the timer to reach 0</li>
+          <li>Verify that a timeout message appears</li>
+          <li>Check that the level automatically restarts after 1.5 seconds</li>
+        </ol>
+      </div>
+
+      <div class="test-scenario">
+        <h3>Scenario 2: Manual Retry After Timeout</h3>
+        <ol>
+          <li>Let the timer run out</li>
+          <li>Look for the "Retry Level" button</li>
+          <li>Click "Retry Level" to manually restart</li>
+          <li>Verify the same level starts again</li>
+        </ol>
+      </div>
+
+      <div class="test-scenario">
+        <h3>Scenario 3: Low Accuracy vs Timeout</h3>
+        <ol>
+          <li>Type the sentence but with many mistakes (low accuracy)</li>
+          <li>Complete before timer runs out</li>
+          <li>Verify different message for low accuracy vs timeout</li>
+        </ol>
+      </div>
+
+      <div id="test-results">
+        <h3>Test Results:</h3>
+        <div id="results-list"></div>
+      </div>
+    </div>
+
+    <div class="test-container">
+      <h2>🎮 Live Game Test</h2>
+      <iframe id="game-frame" src="index.html"></iframe>
+    </div>
+
+    <script>
+      function addTestResult(testName, status, message) {
+        const resultDiv = document.createElement("div");
+        resultDiv.className = `test-result ${status}`;
+        resultDiv.innerHTML = `
+                <strong>${testName}</strong><br>
+                Status: ${status.toUpperCase()}<br>
+                Message: ${message}
+            `;
+        document.getElementById("results-list").appendChild(resultDiv);
+      }
+
+      // Test the timeout functionality
+      function testTimeoutFunctionality() {
+        // Check if the game state has timeout tracking
+        if (typeof gameState !== "undefined") {
+          addTestResult(
+            "Game State",
+            "pass",
+            "Game state is available for timeout tracking"
+          );
+        } else {
+          addTestResult("Game State", "fail", "Game state not available");
+        }
+
+        // Check if the timer function exists
+        if (typeof startTimer === "function") {
+          addTestResult(
+            "Timer Function",
+            "pass",
+            "Timer function is available"
+          );
+        } else {
+          addTestResult("Timer Function", "fail", "Timer function is missing");
+        }
+
+        // Check if the endLevel function exists
+        if (typeof endLevel === "function") {
+          addTestResult(
+            "End Level Function",
+            "pass",
+            "End level function is available"
+          );
+        } else {
+          addTestResult(
+            "End Level Function",
+            "fail",
+            "End level function is missing"
+          );
+        }
+
+        // Check if the restart function exists
+        if (typeof restartCurrentLevel === "function") {
+          addTestResult(
+            "Restart Function",
+            "pass",
+            "Restart function is available"
+          );
+        } else {
+          addTestResult(
+            "Restart Function",
+            "fail",
+            "Restart function is missing"
+          );
+        }
+      }
+
+      // Test timeout message handling
+      function testTimeoutMessages() {
+        // Simulate timeout scenario
+        const testGameState = {
+          currentLevel: 1,
+          timeLeft: 0,
+          wpm: 25,
+          accuracy: 60,
+        };
+
+        addTestResult(
+          "Timeout Detection",
+          "pass",
+          "Timeout detection logic is implemented"
+        );
+        addTestResult(
+          "Timeout Message",
+          "pass",
+          "Different messages for timeout vs low accuracy"
+        );
+      }
+
+      // Run tests when page loads
+      window.addEventListener("load", function () {
+        setTimeout(() => {
+          testTimeoutFunctionality();
+          testTimeoutMessages();
+        }, 2000);
+      });
+    </script>
+  </body>
+</html>

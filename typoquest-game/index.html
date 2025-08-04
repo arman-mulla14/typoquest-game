@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TypoQuest - Master Your Typing Skills</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+      <!-- Welcome Screen -->
+      <div id="welcomeScreen" class="welcome-screen">
+        <div class="game-header">
+          <h1 class="logo">TypoQuest</h1>
+          <p style="font-size: 1.2em; opacity: 0.9">
+            Master Your Typing Skills Through 15 Epic Levels
+          </p>
+        </div>
+
+        <h2>Welcome to the Ultimate Typing Challenge!</h2>
+        <p style="font-size: 1.1em; margin-bottom: 30px; opacity: 0.9">
+          Journey through 15 progressively challenging levels, each with unique
+          names and increasing difficulty. Test your speed, accuracy, and
+          endurance as you climb from novice to typing master!
+        </p>
+
+        <div style="margin-bottom: 30px">
+          <h3 style="color: #ffd700; margin-bottom: 15px">Featured Levels:</h3>
+          <div class="level-preview">
+            <span><strong>Level 5:</strong> "Siro" - The Awakening</span>
+            <span style="color: #4ecdc4">🌟</span>
+          </div>
+          <div class="level-preview">
+            <span><strong>Level 10:</strong> "Ethic" - The Trial</span>
+            <span style="color: #ffd700">⚡</span>
+          </div>
+          <div class="level-preview">
+            <span><strong>Level 15:</strong> "Hicari" - The Master</span>
+            <span style="color: #ff6b6b">🏆</span>
+          </div>
+        </div>
+
+        <div class="controls">
+          <button class="btn btn-primary" onclick="showSignup()">
+            Start Your Quest
+          </button>
+          <button class="btn btn-secondary" onclick="showDemo()">
+            Play Demo
+          </button>
+        </div>
+      </div>
+
+      <!-- Signup Screen -->
+      <div id="signupScreen" class="signup-screen hidden">
+        <div class="game-header">
+          <h1 class="logo">TypoQuest</h1>
+        </div>
+
+        <h2>Begin Your Typing Journey</h2>
+        <p style="margin-bottom: 30px">
+          Enter your details to start the adventure and earn your certificate!
+        </p>
+
+        <form class="signup-form" onsubmit="startGame(event)">
+          <input
+            type="text"
+            id="playerName"
+            class="form-input"
+            placeholder="Your Name"
+            required
+          />
+          <input
+            type="email"
+            id="playerEmail"
+            class="form-input"
+            placeholder="Your Email"
+            required
+          />
+          <button type="submit" class="btn btn-primary">Begin Quest</button>
+        </form>
+
+        <div class="controls" style="margin-top: 20px">
+          <button class="btn btn-secondary" onclick="showWelcome()">
+            Back
+          </button>
+        </div>
+      </div>
+
+      <!-- Game Screen -->
+      <div id="gameScreen" class="hidden">
+        <div class="game-header">
+          <h1 class="logo">TypoQuest</h1>
+        </div>
+
+        <div class="level-info">
+          <div class="level-title" id="levelTitle">Level 1: "Genesis"</div>
+          <div class="stats">
+            <div class="stat">
+              <div class="stat-value" id="wpmDisplay">0</div>
+              <div class="stat-label">WPM</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value" id="accuracyDisplay">100</div>
+              <div class="stat-label">Accuracy %</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value" id="currentLevel">1</div>
+              <div class="stat-label">Level</div>
+            </div>
+          </div>
+          <div class="progress-bar">
+            <div
+              class="progress-fill"
+              id="progressFill"
+              style="width: 6.67%"
+            ></div>
+          </div>
+        </div>
+
+        <div class="timer" id="timer">60</div>
+
+        <div class="typing-area">
+          <div class="sentence-display" id="sentenceDisplay"></div>
+          <input
+            type="text"
+            id="typingInput"
+            class="typing-input"
+            placeholder="Start typing here..."
+            disabled
+          />
+        </div>
+
+        <div class="controls">
+          <button class="btn btn-primary" id="startBtn" onclick="startLevel()">
+            Start Level
+          </button>
+          <button
+            class="btn btn-secondary"
+            id="nextBtn"
+            onclick="nextLevel()"
+            disabled
+          >
+            Next Level
+          </button>
+          <button
+            class="btn btn-secondary"
+            id="restartBtn"
+            onclick="restartCurrentLevel()"
+            style="display: none"
+          >
+            Retry Level
+          </button>
+          <button class="btn btn-secondary" onclick="resetGame()">
+            Restart Game
+          </button>
+        </div>
+      </div>
+
+      <!-- Certificate Screen -->
+      <div id="certificateScreen" class="certificate-screen hidden">
+        <div class="game-header">
+          <h1 class="logo">TypoQuest</h1>
+        </div>
+
+        <h2>🏆 Congratulations! 🏆</h2>
+        <p style="margin-bottom: 30px">
+          You have completed all 15 levels and mastered the art of typing!
+        </p>
+
+        <!-- New Certificate Design -->
+        <div class="certificate-container" style="margin: 20px auto">
+          <div class="parchment-texture"></div>
+          <div class="watermark">CERTIFIED</div>
+
+          <div class="ornate-border"></div>
+          <div class="inner-border"></div>
+
+          <div class="corner-ornament corner-tl"></div>
+          <div class="corner-ornament corner-tr"></div>
+          <div class="corner-ornament corner-bl"></div>
+          <div class="corner-ornament corner-br"></div>
+
+          <div class="official-seal"></div>
+
+          <div class="certificate-content">
+            <div class="header">
+              <div class="institution-logo"></div>
+              <h3 class="institution-name">TypoQuest Academy</h3>
+              <p class="institution-subtitle">Institute of Typing Mastery</p>
+              <h1 class="certificate-title">Certificate</h1>
+              <p class="certificate-subtitle">of Excellence</p>
+            </div>
+
+            <div class="presented-to">
+              <p class="presented-to-text">This is to certify that</p>
+              <h2 class="recipient-name" id="certificateName"></h2>
+              <p class="achievement-description">
+                has successfully completed all 15 levels of TypoQuest and
+                demonstrated exceptional typing mastery, achieving remarkable
+                speed and accuracy throughout the comprehensive typing
+                challenge.
+              </p>
+
+              <div class="performance-stats">
+                <div class="stat-item">
+                  <span class="stat-value" id="avgWpm"></span>
+                  <span class="stat-label">Average WPM</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-value" id="avgAccuracy"></span>
+                  <span class="stat-label">Accuracy %</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-value" id="completedLevels">15</span>
+                  <span class="stat-label">Levels Completed</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="date-location">
+              <div class="date" id="certificateDate"></div>
+              <div class="location">
+                Certificate ID: <span id="certificateId"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="ribbon">
+            <span class="ribbon-text">Certified</span>
+          </div>
+        </div>
+
+        <div class="controls">
+          <button class="btn btn-primary" onclick="downloadCertificate()">
+            Download Certificate
+          </button>
+          <button class="btn btn-secondary" onclick="resetGame()">
+            Play Again
+          </button>
+        </div>
+      </div>
+
+      <!-- Admin Screen -->
+      <div id="adminScreen" class="admin-screen hidden">
+        <div class="game-header">
+          <h1 class="logo">TypoQuest Admin</h1>
+        </div>
+
+        <h2>🔐 Admin Dashboard</h2>
+        <p style="margin-bottom: 30px">
+          Track user performance and manage certificates
+        </p>
+
+        <div class="admin-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Player</th>
+                <th>Email</th>
+                <th>Level Reached</th>
+                <th>Avg WPM</th>
+                <th>Avg Accuracy</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="adminTableBody">
+              <!-- Admin data will be populated here -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="controls" style="margin-top: 30px">
+          <button class="btn btn-primary" onclick="exportData()">
+            Export Data (CSV)
+          </button>
+          <button class="btn btn-secondary" onclick="showWelcome()">
+            Back to Game
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>

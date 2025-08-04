@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TypoQuest Certificate Test</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        min-height: 100vh;
+      }
+      .test-container {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 30px;
+        margin: 20px auto;
+        max-width: 800px;
+        text-align: center;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      }
+      .certificate {
+        background: white;
+        color: #333;
+        padding: 40px;
+        border-radius: 20px;
+        border: 5px solid #ffd700;
+        max-width: 600px;
+        margin: 20px auto;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+      .certificate h1 {
+        color: #4ecdc4;
+        font-size: 2.5em;
+        margin-bottom: 20px;
+      }
+      .certificate-content {
+        font-size: 1.2em;
+        line-height: 1.8;
+        margin-bottom: 30px;
+      }
+      .certificate-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 2px solid #ffd700;
+        padding-top: 20px;
+      }
+      button {
+        background: linear-gradient(45deg, #4ecdc4, #44a08d);
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 25px;
+        font-size: 1.1em;
+        font-weight: bold;
+        cursor: pointer;
+        margin: 10px;
+        transition: all 0.3s ease;
+      }
+      button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(78, 205, 196, 0.3);
+      }
+      .btn-secondary {
+        background: linear-gradient(45deg, #ffd700, #ffa000);
+        color: #333;
+      }
+      .btn-secondary:hover {
+        box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+      }
+      .feature-list {
+        text-align: left;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 10px;
+        margin: 20px 0;
+      }
+      .feature-list h3 {
+        color: #ffd700;
+        margin-bottom: 15px;
+      }
+      .feature-list ul {
+        list-style: none;
+        padding: 0;
+      }
+      .feature-list li {
+        margin: 10px 0;
+        padding-left: 20px;
+        position: relative;
+      }
+      .feature-list li:before {
+        content: "🏆";
+        position: absolute;
+        left: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="test-container">
+      <h1>🎌 TypoQuest Certificate System</h1>
+      <h2>🏆 Certificate of Excellence</h2>
+      <p>
+        After completing all 15 levels with 85%+ accuracy, users receive a
+        beautiful certificate recognizing their typing mastery achievement.
+      </p>
+
+      <div class="feature-list">
+        <h3>Certificate Features:</h3>
+        <ul>
+          <li>
+            <strong>Automatic Generation:</strong> Certificate appears after
+            completing Level 15
+          </li>
+          <li>
+            <strong>Personalized Content:</strong> Includes player name and
+            performance stats
+          </li>
+          <li>
+            <strong>Unique Certificate ID:</strong> Each certificate has a
+            unique identifier
+          </li>
+          <li>
+            <strong>Performance Metrics:</strong> Shows average WPM and accuracy
+          </li>
+          <li>
+            <strong>Downloadable:</strong> Users can download their certificate
+            as a text file
+          </li>
+          <li>
+            <strong>Professional Design:</strong> Beautiful golden border and
+            styling
+          </li>
+          <li>
+            <strong>Completion Date:</strong> Records the exact date of
+            achievement
+          </li>
+          <li>
+            <strong>Admin Tracking:</strong> Certificate data is stored for
+            admin review
+          </li>
+        </ul>
+      </div>
+
+      <h3>🎯 How to Earn the Certificate:</h3>
+      <p>
+        <strong>Requirements:</strong><br />
+        ✅ Complete all 15 levels<br />
+        ✅ Achieve 85%+ accuracy on each level<br />
+        ✅ Finish the final level (Hicari - Master's Garden)
+      </p>
+
+      <button onclick="showSampleCertificate()">View Sample Certificate</button>
+      <button onclick="openGameTest()" class="btn-secondary">
+        Test in Game
+      </button>
+    </div>
+
+    <!-- Sample Certificate -->
+    <div id="sampleCertificate" class="certificate" style="display: none">
+      <h1>Certificate of Excellence</h1>
+      <div class="certificate-content">
+        <p><strong>This is to certify that</strong></p>
+        <h2 style="color: #ffd700; margin: 20px 0">Sample Player</h2>
+        <p>
+          has successfully completed all 15 levels of
+          <strong>TypoQuest</strong>
+        </p>
+        <p>and demonstrated exceptional typing mastery</p>
+        <p style="margin-top: 20px">
+          <strong>Final Achievement:</strong><br />
+          Level 15 "Hicari" - The Master<br />
+          Average WPM: 78<br />
+          Average Accuracy: 94%
+        </p>
+      </div>
+      <div class="certificate-footer">
+        <div>
+          <strong>Certificate ID:</strong><br />
+          <span>TQ-SAMPLE-123456</span>
+        </div>
+        <div>
+          <strong>Date:</strong><br />
+          <span id="sampleDate"></span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function showSampleCertificate() {
+        const sampleCert = document.getElementById("sampleCertificate");
+        const sampleDate = document.getElementById("sampleDate");
+
+        if (sampleCert.style.display === "none") {
+          sampleCert.style.display = "block";
+          sampleDate.textContent = new Date().toLocaleDateString();
+          sampleCert.scrollIntoView({ behavior: "smooth" });
+        } else {
+          sampleCert.style.display = "none";
+        }
+      }
+
+      function openGameTest() {
+        window.open("index.html", "_blank");
+      }
+
+      // Set sample date on page load
+      document.getElementById("sampleDate").textContent =
+        new Date().toLocaleDateString();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TypoQuest Certificate Test</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap");
+
+      .test-controls {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 20px;
+        margin: 20px auto;
+        max-width: 600px;
+        text-align: center;
+      }
+      .test-button {
+        background: linear-gradient(45deg, #4ecdc4, #44a08d);
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 25px;
+        font-size: 1.1em;
+        font-weight: bold;
+        cursor: pointer;
+        margin: 10px;
+        transition: all 0.3s ease;
+      }
+      .test-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(78, 205, 196, 0.3);
+      }
+      .test-button.secondary {
+        background: linear-gradient(45deg, #ffd700, #ffa000);
+        color: #333;
+      }
+      .test-button.secondary:hover {
+        box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+      }
+
+      /* New Certificate Design */
+      .certificate-container {
+        width: 850px;
+        height: 650px;
+        position: relative;
+        background: #ffffff;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1),
+          0 10px 40px rgba(0, 0, 0, 0.15), 0 0 60px rgba(0, 0, 0, 0.05);
+        border-radius: 8px;
+        overflow: hidden;
+        margin: 20px auto;
+      }
+
+      .parchment-texture {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            45deg,
+            transparent 48%,
+            rgba(218, 165, 32, 0.03) 50%,
+            transparent 52%
+          ),
+          linear-gradient(
+            -45deg,
+            transparent 48%,
+            rgba(218, 165, 32, 0.03) 50%,
+            transparent 52%
+          ),
+          radial-gradient(
+            circle at 30% 40%,
+            rgba(139, 69, 19, 0.02) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            circle at 70% 60%,
+            rgba(139, 69, 19, 0.02) 0%,
+            transparent 60%
+          );
+        background-size: 20px 20px, 20px 20px, 300px 300px, 250px 250px;
+      }
+
+      .ornate-border {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+        border: 3px solid #8b4513;
+        border-image: linear-gradient(
+            45deg,
+            #b8860b,
+            #daa520,
+            #ffd700,
+            #daa520,
+            #b8860b
+          )
+          1;
+      }
+
+      .inner-border {
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        right: 25px;
+        bottom: 25px;
+        border: 1px solid #daa520;
+      }
+
+      .corner-ornament {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        background: radial-gradient(circle, #ffd700 30%, #daa520 70%);
+        transform: rotate(45deg);
+        border-radius: 20% 70% 20% 70%;
+      }
+
+      .corner-ornament::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+        width: 20px;
+        height: 20px;
+        background: #8b4513;
+        clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      }
+
+      .corner-tl {
+        top: 5px;
+        left: 5px;
+      }
+      .corner-tr {
+        top: 5px;
+        right: 5px;
+      }
+      .corner-bl {
+        bottom: 5px;
+        left: 5px;
+      }
+      .corner-br {
+        bottom: 5px;
+        right: 5px;
+      }
+
+      .certificate-content {
+        position: relative;
+        z-index: 10;
+        padding: 70px 60px 50px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .institution-logo {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(
+          135deg,
+          #1e40af 0%,
+          #3b82f6 50%,
+          #60a5fa 100%
+        );
+        border-radius: 50%;
+        margin: 0 auto 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 4px solid #ffd700;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        position: relative;
+      }
+
+      .institution-logo::before {
+        content: "⚡";
+        font-size: 32px;
+        filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.3));
+      }
+
+      .institution-name {
+        font-family: "Crimson Text", serif;
+        font-size: 1.1rem;
+        color: #2c3e50;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+      }
+
+      .institution-subtitle {
+        font-size: 0.85rem;
+        color: #7f8c8d;
+        letter-spacing: 1px;
+        font-weight: 400;
+      }
+
+      .certificate-title {
+        font-family: "Playfair Display", serif;
+        font-size: 4rem;
+        font-weight: 700;
+        color: #2c3e50;
+        letter-spacing: 6px;
+        margin: 25px 0 15px;
+        text-transform: uppercase;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .certificate-subtitle {
+        font-family: "Crimson Text", serif;
+        font-size: 1.4rem;
+        color: #34495e;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        font-weight: 400;
+        font-style: italic;
+      }
+
+      .presented-to {
+        text-align: center;
+        margin: 35px 0;
+      }
+
+      .presented-to-text {
+        font-family: "Crimson Text", serif;
+        font-size: 1.2rem;
+        color: #2c3e50;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 25px;
+        font-weight: 400;
+        font-style: italic;
+      }
+
+      .recipient-name {
+        font-family: "Playfair Display", serif;
+        font-size: 3.2rem;
+        color: #8b4513;
+        font-weight: 600;
+        margin-bottom: 25px;
+        position: relative;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .recipient-name::after {
+        content: "";
+        position: absolute;
+        bottom: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 350px;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          #daa520 20%,
+          #ffd700 50%,
+          #daa520 80%,
+          transparent
+        );
+        border-radius: 2px;
+      }
+
+      .achievement-description {
+        font-family: "Crimson Text", serif;
+        font-size: 1.1rem;
+        color: #2c3e50;
+        line-height: 1.8;
+        text-align: center;
+        max-width: 550px;
+        margin: 0 auto;
+        font-style: italic;
+      }
+
+      .performance-stats {
+        display: flex;
+        justify-content: space-around;
+        margin: 30px 0;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .stat-item {
+        text-align: center;
+        padding: 15px;
+        background: rgba(255, 215, 0, 0.1);
+        border-radius: 10px;
+        border: 1px solid #daa520;
+      }
+
+      .stat-value {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #8b4513;
+        display: block;
+      }
+
+      .stat-label {
+        font-size: 0.9rem;
+        color: #7f8c8d;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-top: 5px;
+      }
+
+      .date-location {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 40px 0 20px;
+        font-family: "Crimson Text", serif;
+      }
+
+      .date,
+      .location {
+        font-size: 0.95rem;
+        color: #34495e;
+        font-weight: 400;
+      }
+
+      .official-seal {
+        position: absolute;
+        top: 50px;
+        right: 60px;
+        width: 100px;
+        height: 100px;
+        background: radial-gradient(
+          circle,
+          #ffd700 0%,
+          #daa520 50%,
+          #b8860b 100%
+        );
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 0 3px #8b4513, 0 0 0 6px #ffd700,
+          0 8px 20px rgba(0, 0, 0, 0.3),
+          inset 0 2px 4px rgba(255, 255, 255, 0.3);
+        z-index: 15;
+        transform: rotate(-15deg);
+      }
+
+      .official-seal::before {
+        content: "🏆";
+        font-size: 40px;
+        filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.3));
+        transform: rotate(15deg);
+      }
+
+      .ribbon {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120px;
+        height: 30px;
+        background: linear-gradient(135deg, #e74c3c, #c0392b);
+        clip-path: polygon(
+          0 0,
+          calc(100% - 15px) 0,
+          100% 50%,
+          calc(100% - 15px) 100%,
+          0 100%,
+          15px 50%
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .ribbon-text {
+        color: white;
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      .watermark {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+        font-family: "Playfair Display", serif;
+        font-size: 8rem;
+        color: rgba(218, 165, 32, 0.05);
+        font-weight: 700;
+        z-index: 1;
+        user-select: none;
+        pointer-events: none;
+      }
+
+      @media print {
+        body {
+          background: white;
+        }
+        .certificate-container {
+          box-shadow: none;
+          border: 1px solid #ccc;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .certificate-container {
+          width: 95vw;
+          height: auto;
+          min-height: 70vh;
+        }
+
+        .certificate-title {
+          font-size: 3rem;
+        }
+
+        .recipient-name {
+          font-size: 2.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+      <div class="game-header">
+        <h1 class="logo">TypoQuest</h1>
+        <p style="font-size: 1.2em; opacity: 0.9">Certificate Test Page</p>
+      </div>
+
+      <div class="test-controls">
+        <h2>🏆 Certificate Testing</h2>
+        <p>Click the buttons below to test the certificate functionality:</p>
+
+        <button class="test-button" onclick="showTestCertificate()">
+          Show Sample Certificate
+        </button>
+        <button class="test-button secondary" onclick="showRealCertificate()">
+          Show Real Certificate
+        </button>
+        <button
+          class="test-button secondary"
+          onclick="downloadTestCertificate()"
+        >
+          Download Test Certificate
+        </button>
+        <button
+          class="test-button secondary"
+          onclick="window.open('index.html', '_blank')"
+        >
+          Open Full Game
+        </button>
+      </div>
+
+      <!-- New Certificate Design -->
+      <div id="certificateScreen" class="hidden">
+        <div class="certificate-container">
+          <div class="parchment-texture"></div>
+          <div class="watermark">CERTIFIED</div>
+
+          <div class="ornate-border"></div>
+          <div class="inner-border"></div>
+
+          <div class="corner-ornament corner-tl"></div>
+          <div class="corner-ornament corner-tr"></div>
+          <div class="corner-ornament corner-bl"></div>
+          <div class="corner-ornament corner-br"></div>
+
+          <div class="official-seal"></div>
+
+          <div class="certificate-content">
+            <div class="header">
+              <div class="institution-logo"></div>
+              <h3 class="institution-name">TypoQuest Academy</h3>
+              <p class="institution-subtitle">Institute of Typing Mastery</p>
+              <h1 class="certificate-title">Certificate</h1>
+              <p class="certificate-subtitle">of Excellence</p>
+            </div>
+
+            <div class="presented-to">
+              <p class="presented-to-text">This is to certify that</p>
+              <h2 class="recipient-name" id="certificateName">Test Player</h2>
+              <p class="achievement-description">
+                has successfully completed all 15 levels of TypoQuest and
+                demonstrated exceptional typing mastery, achieving remarkable
+                speed and accuracy throughout the comprehensive typing
+                challenge.
+              </p>
+
+              <div class="performance-stats">
+                <div class="stat-item">
+                  <span class="stat-value" id="avgWpm">85</span>
+                  <span class="stat-label">Average WPM</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-value" id="avgAccuracy">96</span>
+                  <span class="stat-label">Accuracy %</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-value" id="completedLevels">15</span>
+                  <span class="stat-label">Levels Completed</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="date-location">
+              <div class="date" id="certificateDate">December 15, 2024</div>
+              <div class="location">
+                Certificate ID: <span id="certificateId">TQ-TEST-123456</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="ribbon">
+            <span class="ribbon-text">Certified</span>
+          </div>
+        </div>
+
+        <div class="controls" style="text-align: center; margin-top: 20px">
+          <button class="btn btn-primary" onclick="downloadTestCertificate()">
+            Download Certificate
+          </button>
+          <button class="btn btn-secondary" onclick="hideCertificate()">
+            Hide Certificate
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Mock game state for testing
+      const mockGameState = {
+        playerName: "Test Player",
+        playerEmail: "test@typoquest.com",
+        totalWpm: 85,
+        totalAccuracy: 96,
+        levelData: [
+          { level: 1, wpm: 75, accuracy: 95, completed: true },
+          { level: 2, wpm: 78, accuracy: 92, completed: true },
+          { level: 3, wpm: 80, accuracy: 94, completed: true },
+          { level: 4, wpm: 82, accuracy: 96, completed: true },
+          { level: 5, wpm: 85, accuracy: 98, completed: true },
+          { level: 6, wpm: 87, accuracy: 97, completed: true },
+          { level: 7, wpm: 88, accuracy: 96, completed: true },
+          { level: 8, wpm: 90, accuracy: 95, completed: true },
+          { level: 9, wpm: 92, accuracy: 94, completed: true },
+          { level: 10, wpm: 93, accuracy: 96, completed: true },
+          { level: 11, wpm: 95, accuracy: 97, completed: true },
+          { level: 12, wpm: 96, accuracy: 98, completed: true },
+          { level: 13, wpm: 97, accuracy: 99, completed: true },
+          { level: 14, wpm: 98, accuracy: 100, completed: true },
+          { level: 15, wpm: 100, accuracy: 100, completed: true },
+        ],
+      };
+
+      function showTestCertificate() {
+        // Hide other screens
+        document
+          .querySelectorAll(
+            ".welcome-screen, .signup-screen, .game-screen, .admin-screen"
+          )
+          .forEach((screen) => {
+            screen.classList.add("hidden");
+          });
+
+        // Show certificate screen
+        document.getElementById("certificateScreen").classList.remove("hidden");
+
+        // Set test data
+        document.getElementById("certificateName").textContent =
+          mockGameState.playerName;
+        document.getElementById("avgWpm").textContent = mockGameState.totalWpm;
+        document.getElementById("avgAccuracy").textContent =
+          mockGameState.totalAccuracy;
+        document.getElementById("completedLevels").textContent =
+          mockGameState.levelData.filter((level) => level.completed).length;
+        document.getElementById("certificateDate").textContent =
+          new Date().toLocaleDateString();
+
+        // Generate unique certificate ID
+        const certificateId =
+          "TQ-TEST-" +
+          Date.now().toString(36).toUpperCase() +
+          "-" +
+          Math.random().toString(36).substring(2, 8).toUpperCase();
+        document.getElementById("certificateId").textContent = certificateId;
+      }
+
+      function showRealCertificate() {
+        // This would normally be called after completing all levels
+        showTestCertificate();
+      }
+
+      function hideCertificate() {
+        document.getElementById("certificateScreen").classList.add("hidden");
+        // Show welcome screen again
+        document.getElementById("welcomeScreen").classList.remove("hidden");
+      }
+
+      function downloadTestCertificate() {
+        const completedLevels = mockGameState.levelData.filter(
+          (level) => level.completed
+        ).length;
+        const perfectLevels = mockGameState.levelData.filter(
+          (level) => level.accuracy === 100
+        ).length;
+
+        const certificateContent = `
+╔══════════════════════════════════════════════════════════════╗
+║                    TYPOQUEST CERTIFICATE                     ║
+║                    OF EXCELLENCE                             ║
+╚══════════════════════════════════════════════════════════════╝
+
+This is to certify that ${mockGameState.playerName} has successfully 
+completed all 15 levels of TypoQuest and demonstrated exceptional 
+typing mastery.
+
+╔══════════════════════════════════════════════════════════════╗
+║                    FINAL ACHIEVEMENT                         ║
+║                    Level 15 "Hicari" - The Master           ║
+║                                                              ║
+║  Average WPM: ${mockGameState.totalWpm}                                ║
+║  Average Accuracy: ${mockGameState.totalAccuracy}%                       ║
+║  Levels Completed: ${completedLevels}/15                          ║
+║  Perfect Scores: ${perfectLevels}                                 ║
+╚══════════════════════════════════════════════════════════════╝
+
+Certificate ID: ${document.getElementById("certificateId").textContent}
+Date: ${document.getElementById("certificateDate").textContent}
+
+Congratulations on achieving typing mastery!
+            `;
+
+        const blob = new Blob([certificateContent], { type: "text/plain" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `TypoQuest_Certificate_${mockGameState.playerName.replace(
+          /\s+/g,
+          "_"
+        )}.txt`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+
+      // Initialize particles
+      function createParticles() {
+        const particlesContainer = document.getElementById("particles");
+        if (!particlesContainer) return;
+        particlesContainer.innerHTML = "";
+        for (let i = 0; i < 50; i++) {
+          const particle = document.createElement("div");
+          particle.className = "particle";
+          particle.style.left = Math.random() * 100 + "%";
+          particle.style.animationDelay = Math.random() * 6 + "s";
+          particle.style.animationDuration = Math.random() * 3 + 3 + "s";
+          particlesContainer.appendChild(particle);
+        }
+      }
+
+      // Initialize on page load
+      window.addEventListener("load", function () {
+        createParticles();
+        document.getElementById("certificateDate").textContent =
+          new Date().toLocaleDateString();
+      });
+    </script>
+  </body>
+</html>
